@@ -54,7 +54,6 @@ import bob.io.base
 import bob.io.video
 import bob.io.image
 
-
 def main(user_input=None):
 
   # Parse the command-line arguments
@@ -77,5 +76,21 @@ def main(user_input=None):
   # if the user wants more verbosity, lowers the logging level
   if args['--verbose'] == 1: logging.getLogger().setLevel(logging.INFO)
   elif args['--verbose'] >= 2: logging.getLogger().setLevel(logging.DEBUG)
+
+  import numpy as np
+  import menpo.io as mio
+  import bob.ip.facedetect
+
+  import pkg_resources
+  model_file = pkg_resources.resource_filename(__name__,
+      os.path.join('..', 'data', 'keypoint_model.pkl.gz'))
+  model = mio.import_pickle(model_file)
+
+  # detect the face location on the given image
+  data = bob.io.base.load(args['<input>'])
+  bounding_box, quality = bob.ip.facedetect.detect_single_face(data)
+
+  # detect keypoints
+  keypoints = model.fit_from_bb(data, bounding_box)
 
   import ipdb; ipdb.set_trace()
