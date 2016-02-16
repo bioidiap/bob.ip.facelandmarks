@@ -15,7 +15,7 @@ setup(
 
     name='bob.ip.menpofit',
     version=version,
-    description='Face detection using boosted LBP features',
+    description='Face keypoint detection using menpofit',
 
     url='http://github.com/bioidiap/bob.ip.menpofit',
     license='BSD',
