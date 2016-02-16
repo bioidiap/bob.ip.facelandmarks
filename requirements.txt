@@ -6,4 +6,4 @@ bob.io.image
 bob.io.video
 bob.ip.facedetect
 cyvlfeat
-menpofit
+menpo
