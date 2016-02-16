@@ -1,0 +1,3 @@
+include README.rst bootstrap-buildout.py buildout.cfg requirements.txt version.txt
+recursive-include doc doc/plot doc/img *.py *.rst *.png *.ico
+include bob/ip/menpofit/keypoint_model.pkl
