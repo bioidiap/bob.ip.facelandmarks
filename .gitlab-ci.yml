@@ -9,6 +9,8 @@ py27-idiap:
     - export NOSE_WITH_COVERAGE=1
     - export NOSE_COVER_PACKAGE=bob.ip.facelandmarks
     - ./bin/nosetests -sv
+    - ./bin/sphinx-build doc html
+    - ./bin/sphinx-build -b doctest doc html
   tags:
     - lidiap2015
 
@@ -21,6 +23,8 @@ py27-ubuntu-12.04:
     - export NOSE_WITH_COVERAGE=1
     - export NOSE_COVER_PACKAGE=bob.ip.facelandmarks
     - ./bin/nosetests -sv
+    - ./bin/sphinx-build doc html
+    - ./bin/sphinx-build -b doctest doc html
   tags:
     - beat-ubuntu-12.04
 
@@ -33,6 +37,8 @@ py27-ubuntu-14.04:
     - export NOSE_WITH_COVERAGE=1
     - export NOSE_COVER_PACKAGE=bob.ip.facelandmarks
     - ./bin/nosetests -sv
+    - ./bin/sphinx-build doc html
+    - ./bin/sphinx-build -b doctest doc html
   tags:
     - beat-ubuntu-14.04
 
@@ -45,6 +51,8 @@ py27-macosx:
     - export NOSE_WITH_COVERAGE=1
     - export NOSE_COVER_PACKAGE=bob.ip.facelandmarks
     - ./bin/nosetests -sv
+    - ./bin/sphinx-build doc html
+    - ./bin/sphinx-build -b doctest doc html
   tags:
     - beat-macosx
 
@@ -59,6 +67,8 @@ py34-idiap:
     - export NOSE_WITH_COVERAGE=1
     - export NOSE_COVER_PACKAGE=bob.ip.facelandmarks
     - ./bin/nosetests -sv
+    - ./bin/sphinx-build doc html
+    - ./bin/sphinx-build -b doctest doc html
   tags:
     - lidiap2015
 
@@ -71,6 +81,8 @@ py34-ubuntu-latest:
     - export NOSE_WITH_COVERAGE=1
     - export NOSE_COVER_PACKAGE=bob.ip.facelandmarks
     - ./bin/nosetests -sv
+    - ./bin/sphinx-build doc html
+    - ./bin/sphinx-build -b doctest doc html
   tags:
     - beat-ubuntu-latest
 
@@ -83,5 +95,7 @@ py34-macosx:
     - export NOSE_WITH_COVERAGE=1
     - export NOSE_COVER_PACKAGE=bob.ip.facelandmarks
     - ./bin/nosetests -sv
+    - ./bin/sphinx-build doc html
+    - ./bin/sphinx-build -b doctest doc html
   tags:
     - beat-macosx
