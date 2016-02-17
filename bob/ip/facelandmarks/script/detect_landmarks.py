@@ -6,15 +6,25 @@
 '''Face landmark detector using menpo (%(version)s)
 
 Usage:
-  %(prog)s [--verbose...] <input> <output>
+  %(prog)s [--verbose...] [--limit-to=<int>] [--minimum-quality=<float>]
+           <input> <output>
   %(prog)s (--help | -h)
   %(prog)s (--version | -V)
 
 
 Options:
-  -h, --help             Show this help message and exit
-  -v, --verbose          Increases the verbosity (may appear multiple times)
-  -V, --version          Show version
+  -h, --help                     Show this help message and exit
+  -v, --verbose                  Increases the verbosity (may appear multiple
+                                 times)
+  -V, --version                  Show version
+  -n, --limit-to=<int>           Only detect landmarks on the first N highest
+                                 quality face detections. If not set or set to
+                                 zero, then use all outputs provided by the
+                                 face detector [default: 0]
+  -q, --minimum-quality=<float>  Only detect landmarks on the first N highest
+                                 quality face detections. If not set or set to
+                                 zero, then use all outputs provided by the
+                                 face detector [default: 0.0]
 
 
 Examples:
@@ -70,27 +80,30 @@ def main(user_input=None):
   args = docopt(
       __doc__ % completions,
       argv=arguments,
-      version='Skin color extraction for videos (%s)' % version,
+      version='Face landmark detection for images and videos (%s)' % version,
       )
 
   # if the user wants more verbosity, lowers the logging level
   if args['--verbose'] == 1: logging.getLogger().setLevel(logging.INFO)
   elif args['--verbose'] >= 2: logging.getLogger().setLevel(logging.DEBUG)
 
-  import numpy as np
-  import menpo.io as mio
-  import bob.ip.facedetect
+  from .. import detect_landmarks, draw_landmarks
 
-  import pkg_resources
-  model_file = pkg_resources.resource_filename(__name__,
-      os.path.join('..', 'data', 'keypoint_model.pkl.gz'))
-  model = mio.import_pickle(model_file)
-
-  # detect the face location on the given image
   data = bob.io.base.load(args['<input>'])
-  bounding_box, quality = bob.ip.facedetect.detect_single_face(data)
+  top = int(args['--limit-to'])
+  if top:
+    logger.info('Limiting face-detector output to the top %d detection(s)', top)
+  min_quality = float(args['--minimum-quality'])
+  if min_quality > 0.0:
+    logger.info('Limiting face-detector by quality at %g', min_quality)
+  result = detect_landmarks(data, top, min_quality)
 
-  # detect keypoints
-  keypoints = model.fit_from_bb(data, bounding_box)
-
-  import ipdb; ipdb.set_trace()
+  outext = os.path.splitext(args['<output>'])[1]
+  if outext in ['.png', '.pbm', '.pnm', '.jpg', '.jpeg', '.gif', '.tiff',
+      '.tif']:
+    logger.info("Drawing results on output image `%s'...", args['<output>'])
+    draw_landmarks(data, result)
+    bob.io.base.save(data, args['<output>'])
+  else:
+    # save hdf5
+    pass
