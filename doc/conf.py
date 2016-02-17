@@ -63,7 +63,7 @@ import time
 copyright = u'%s, Idiap Research Institute' % time.strftime('%Y')
 
 # Grab the setup entry
-distribution = pkg_resources.require('bob.ip.menpofit')[0]
+distribution = pkg_resources.require('bob.ip.facelandmarks')[0]
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -189,7 +189,7 @@ html_favicon = 'img/favicon.ico'
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'bob_ip_menpofit_doc'
+htmlhelp_basename = 'bob_ip_facelandmarks_doc'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -203,7 +203,7 @@ latex_font_size = '10pt'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'bob_ip_menpofit.tex', u'Documentation for the face keypoint detection library',
+  ('index', 'bob_ip_facelandmarks.tex', u'Documentation for the face keypoint detection library',
    u'Biometrics Group, Idiap Research Institute', 'manual'),
 ]
 
@@ -233,7 +233,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'bob.ip.menpofit', u'Documentation for the face keypoint detection library', [u'Idiap Research Institute'], 1)
+    ('index', 'bob.ip.facelandmarks', u'Documentation for the face keypoint detection library', [u'Idiap Research Institute'], 1)
 ]
 
 # Default processing flags for sphinx
@@ -243,7 +243,7 @@ autodoc_default_flags = ['members', 'undoc-members', 'inherited-members', 'show-
 
 # For inter-documentation mapping:
 from bob.extension.utils import link_documentation
-intersphinx_mapping = link_documentation(['python', 'numpy', 'scipy', 'matplotlib', 'bob.db.verification.utils'])
+intersphinx_mapping = link_documentation(['python', 'numpy', 'matplotlib'])
 
 
 def setup(app):
