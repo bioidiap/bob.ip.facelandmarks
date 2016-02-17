@@ -105,10 +105,10 @@ build `cyvlfeat`.
 Usage
 -----
 
-After installing this package, simply call the program ``detect_keypoints.py``
+After installing this package, simply call the program ``detect_landmarks.py``
 from the command-line. It has a self-explanatory help message::
 
-  $ ./bin/detect_keypoints.py --help
+  $ ./bin/detect_landmarks.py --help
 
 
 .. _bob: https://www.idiap.ch/software/bob/
