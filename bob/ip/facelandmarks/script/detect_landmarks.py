@@ -3,7 +3,7 @@
 # Andre Anjos <andre.anjos@idiap.ch>
 # Tue 16 Feb 2016 15:52:30 CET
 
-'''Face keypoint detector using menpo (%(version)s)
+'''Face landmark detector using menpo (%(version)s)
 
 Usage:
   %(prog)s [--verbose...] <input> <output>

@@ -34,7 +34,7 @@ setup(
     entry_points={
       # scripts should be declared using this entry:
       'console_scripts': [
-        'detect_keypoints.py = bob.ip.facelandmarks.script.detect_keypoints:main',
+        'detect_landmarks.py = bob.ip.facelandmarks.script.detect_landmarks:main',
       ],
     },
 
