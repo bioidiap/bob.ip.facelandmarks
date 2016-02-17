@@ -87,7 +87,7 @@ def main(user_input=None):
   if args['--verbose'] == 1: logging.getLogger().setLevel(logging.INFO)
   elif args['--verbose'] >= 2: logging.getLogger().setLevel(logging.DEBUG)
 
-  from .. import detect_landmarks, draw_landmarks
+  from .. import detect_landmarks, draw_landmarks, save_landmarks
 
   data = bob.io.base.load(args['<input>'])
   top = int(args['--limit-to'])
@@ -104,6 +104,9 @@ def main(user_input=None):
     logger.info("Drawing results on output image `%s'...", args['<output>'])
     draw_landmarks(data, result)
     bob.io.base.save(data, args['<output>'])
+  elif outext in ['.h5', '.hdf5', '.hdf5']:
+    save_landmarks(result, args['<output>'])
   else:
-    # save hdf5
-    pass
+    raise RuntimeError("no support to output into `%s'" % args['<output>'])
+
+  return 0

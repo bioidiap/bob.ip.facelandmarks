@@ -11,6 +11,8 @@ import collections
 import logging
 logger = logging.getLogger(__name__)
 
+import numpy
+
 import bob.ip.draw
 import bob.ip.color
 import bob.ip.facedetect
@@ -287,7 +289,20 @@ def detect_landmarks(data, top=0, min_quality=0.):
 
 
 def draw_landmarks(data, results):
-  '''Draws bounding boxes and landmarks on the input image'''
+  '''Draws bounding boxes and landmarks on the input image
+
+
+  Parameters:
+
+    data (:py:class:`numpy.ndarray`): An ``uint8`` array with either 2 or 3
+      dimensions, corresponding to a either a gray-scale or color image loaded
+      with Bob.
+
+    results (list): A list of named tuples of type :py:class:`Result`, each
+      containing the result of face detection and landmarks extracted from the
+      input image.
+
+  '''
 
   if len(data.shape) == 2: #gray-scale
     bb_color = 255 #white
@@ -304,3 +319,96 @@ def draw_landmarks(data, results):
     width = int(bb_width/50)
     for p in r.landmarks:
       bob.ip.draw.cross(data, p.astype('int'), width, pt_color)
+
+
+def save_landmarks(results, fname):
+  '''Saves landmarks to an HDF5 file
+
+  This function will create an HDF5 file with the following structure::
+
+    menpo_landmarks68: Dataset {68, 2} (float64)
+    face_detector: {
+      quality: float64,
+      topleft_y: int32,
+      topleft_x: int32,
+      height: int32,
+      width: int32,
+    }
+
+  The points inside the variable ``menpo_landmarks68`` are kept in the format
+  ``(y, x)``.
+
+  If there is more than a single detection on the input results, then the
+  structure of the format is::
+
+    menpo_landmarks68: Dataset {N, 68, 2} (float64)
+    face_detector (Group): {
+      quality: Dataset {N} (float64),
+      topleft_y: Dataset {N} (int32),
+      topleft_x: Dataset {N} (int32),
+      height: Dataset {N} (int32),
+      width: Dataset {N} (int32),
+    }
+
+  Where ``N`` corresponds to the number of entries in ``results``.
+
+  In case the file exists already, then we'll try to create the entries defined
+  above in case they don't exist yet on the said file.
+
+
+  Parameters:
+
+    results (list): A list of named tuples of type :py:class:`Result`, each
+      containing the result of face detection and landmarks extracted from the
+      input image.
+
+    fname (str): A path with the output filename
+
+  '''
+
+  if os.path.exists(fname):
+    logger.info("File `%s' already exists. Appending...", fname)
+    h5f = bob.io.base.HDF5File(fname, 'a')
+  else:
+    logger.debug("Creating a new HDF5 file at `%s'...", fname)
+    h5f = bob.io.base.HDF5File(fname, 'w')
+
+  if len(results) == 1:
+    if not h5f.has_group('face_detector'):
+      # add it
+      h5f.create_group('face_detector')
+      h5f.set('/face_detector/quality', numpy.float64(results[0].quality))
+      h5f.set('/face_detector/topleft_y',
+          numpy.int32(results[0].bounding_box.topleft[0]))
+      h5f.set('/face_detector/topleft_x',
+          numpy.int32(results[0].bounding_box.topleft[1]))
+      h5f.set('/face_detector/height',
+          numpy.int32(results[0].bounding_box.size[0]))
+      h5f.set('/face_detector/width',
+          numpy.int32(results[0].bounding_box.size[1]))
+
+    if not h5f.has_dataset('menpo_landmarks68'):
+      h5f.set('/menpo_landmarks68', results[0].landmarks)
+
+  else:
+    if not h5f.has_group('face_detector'):
+      # add it
+      h5f.create_group('face_detector')
+      h5f.set('/face_detector/quality',
+          numpy.array([k.quality for k in results]).astype('float64'))
+      h5f.set('/face_detector/topleft_y',
+          numpy.array([k.bounding_box.topleft[0] \
+              for k in results]).astype('int32'))
+      h5f.set('/face_detector/topleft_x',
+          numpy.array([k.bounding_box.topleft[1] \
+              for k in results]).astype('int32'))
+      h5f.set('/face_detector/height',
+          numpy.array([k.bounding_box.size[0] \
+              for k in results]).astype('int32'))
+      h5f.set('/face_detector/width',
+          numpy.array([k.bounding_box.size[1] \
+              for k in results]).astype('int32'))
+
+    if not h5f.has_dataset('menpo_landmarks68'):
+      h5f.set('/menpo_landmarks68',
+        numpy.array([k.landmarks for k in results]).astype('float64'))
