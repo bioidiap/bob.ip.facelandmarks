@@ -13,11 +13,11 @@ version = open("version.txt").read().rstrip()
 
 setup(
 
-    name='bob.ip.menpofit',
+    name='bob.ip.facelandmarks',
     version=version,
-    description='Face keypoint detection using menpofit',
+    description='Face keypoint detection using menpo',
 
-    url='http://github.com/bioidiap/bob.ip.menpofit',
+    url='http://github.com/bioidiap/bob.ip.facelandmarks',
     license='BSD',
     author='Andre Anjos',
     author_email='andre.anjos@idiap.ch',
@@ -34,7 +34,7 @@ setup(
     entry_points={
       # scripts should be declared using this entry:
       'console_scripts': [
-        'detect_keypoints.py = bob.ip.menpofit.script.detect_keypoints:main',
+        'detect_keypoints.py = bob.ip.facelandmarks.script.detect_keypoints:main',
       ],
     },
 

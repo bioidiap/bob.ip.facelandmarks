@@ -5,5 +5,5 @@
 .. Place here references to all citations in lower case
 
 .. _bob: https://www.idiap.ch/software/bob/
-.. _menpofit: http://www.menpo.org/
+.. _menpo: http://www.menpo.org/
 .. _ibug: http://ibug.doc.ic.ac.uk/

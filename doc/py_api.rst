@@ -10,5 +10,5 @@
 Classes
 -------
 
-.. automodule:: bob.ip.menpofit
+.. automodule:: bob.ip.facelandmarks
 
