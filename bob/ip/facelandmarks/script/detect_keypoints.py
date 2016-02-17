@@ -3,7 +3,7 @@
 # Andre Anjos <andre.anjos@idiap.ch>
 # Tue 16 Feb 2016 15:52:30 CET
 
-'''Face keypoint detector using menpofit (%(version)s)
+'''Face keypoint detector using menpo (%(version)s)
 
 Usage:
   %(prog)s [--verbose...] <input> <output>
@@ -48,7 +48,7 @@ logger = logging.getLogger(__name__)
 
 from docopt import docopt
 
-version = pkg_resources.require('bob.ip.menpofit')[0].version
+version = pkg_resources.require('bob.ip.facelandmarks')[0].version
 
 import bob.io.base
 import bob.io.video

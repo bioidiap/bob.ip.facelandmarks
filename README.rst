@@ -21,8 +21,8 @@
  Face Keypoint Detection using menpo
 =====================================
 
-This package includes a `Bob`_ interface to `menpo`_ allowing you to detect
-keypoints on faces from images and videos. The model was provided by
+This package includes a `Bob`_ interface to `menpo`_ and menpofit, allowing you
+to detect keypoints on faces from images and videos. The model was provided by
 Epameinondas Antonakos from the `iBug`_ laboratory at Imperial College, London,
 UK.
 
@@ -63,8 +63,29 @@ Installation Notes
 model built-in this package can be loaded. In order to compile `cyvlfeat`_, the
 library `VLFeat`_ must be installed on the system, with SIFT extensions
 compiled in. If you use this package through MacPorts or Ubuntu, then execute
-our `binary installation instructions`_ and you'll be all set. You may then
-bootstrap your buildout like this::
+our `binary installation instructions`_ and you'll be almost all set.
+
+.. note::
+
+   If you use MacPorts, install the package ``py27-scikit-learn`` as it is
+   required by menpofit::
+
+     $ sudo port install py27-scikit-learn
+
+   If you use Python3.4, you may also install ``py34-scikit-learn``.
+
+.. note::
+
+   If you use Ubuntu, you may *optionally* install the package python-sklearn
+   as it is required by menpofit::
+
+     $ sudo apt-get install python-sklearn
+
+   Scikit Learn is, unfortunately, not available in precompiled format for
+   Ubuntu as of today (February/2016).
+
+
+You may then bootstrap your buildout like this::
 
   $ python bootstrap-buildout.py
   $ ./bin/buildout

@@ -7,3 +7,4 @@ bob.io.video
 bob.ip.facedetect
 cyvlfeat
 menpo
+menpofit
