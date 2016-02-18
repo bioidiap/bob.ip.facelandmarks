@@ -14,6 +14,7 @@ import bob.io.base
 import bob.io.base.test_utils
 
 from .utils import detect_landmarks, draw_landmarks
+from .utils import detect_landmarks_on_boundingbox
 from .script.detect_landmarks import main as app
 
 
@@ -25,6 +26,14 @@ def test_lena():
   result = detect_landmarks(data, 1)
   nose.tools.eq_(len(result), 1)
   draw_landmarks(data, result)
+
+
+def test_lena_on_boundingbox():
+  data = bob.io.base.load(F('lena.jpg'))
+  result = detect_landmarks(data, 1)
+  nose.tools.eq_(len(result), 1)
+  points = detect_landmarks_on_boundingbox(data, result[0].bounding_box)
+  assert (numpy.abs(points-result[0].landmarks) <= 0.00001).all()
 
 
 def test_multiple():

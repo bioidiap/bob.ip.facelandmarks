@@ -63,7 +63,7 @@ def _detect_face_using_dlib(data):
   return DLIB_MODEL(data)
 
 
-def bob_boundingbox_to_menpo(b):
+def _bob_boundingbox_to_menpo(b):
   '''Converts a :py:class:`bob.ip.facedetect.BoundingBox` into a
   :py:mod:`menpo.shape.PointCloud`.
 
@@ -120,7 +120,7 @@ def _detect_landmarks_on_grayscale_image(data, bounding_box):
     LANDMARK_MODEL = menpo.io.import_pickle(model_file)
     logging.debug('Loading Menpo landmark detector: OK')
 
-  bounding_box_menpo = bob_boundingbox_to_menpo(bounding_box)
+  bounding_box_menpo = _bob_boundingbox_to_menpo(bounding_box)
   image_menpo = menpo.image.Image(data.astype('float64')/255.)
 
   return LANDMARK_MODEL.fit_from_bb(image_menpo, bounding_box_menpo)
@@ -217,11 +217,41 @@ def _detect_multiple_landmarks_on_gray_image(data, top=0, min_quality=0.):
   return retval
 
 
+def detect_landmarks_on_boundingbox(data, bounding_box):
+  '''Detects landmarks on a color or gray-scale image, returns them
+
+  This function will detect landmarks on the input color or gray-scale image.
+
+  Parameters:
+
+    data (:py:class:`numpy.ndarray`): An ``uint8`` array with either 2 or 3
+      dimensions, corresponding to a gray-scale or color image loaded with Bob
+      (planes, y, x) ordering.
+
+    bounding_box (:py:class:`bob.ip.facedetect.BoundingBox`): A bounding box
+      extracted with :py:mod:`bob.ip.facedetect`.
+
+
+  Returns:
+
+    :py:class:`numpy.ndarray`: Containing the 68 detected landmarks around the
+      bounding box provided as input. Notice this will detect landmarks if
+      there is a face inside the bounding box or not. It is your task to make
+      sure the bounding-box contains a valid face.
+
+  '''
+
+  if len(data.shape) == 3:
+    data = bob.ip.color.rgb_to_gray(data)
+  landmarks = _detect_landmarks_on_grayscale_image(data, bounding_box)
+  return landmarks.final_shape.points
+
+
 def _detect_multiple_landmarks_on_color_image(data, top=0, min_quality=0.):
-  '''Detects landmarks on a color-scale image, returns point-clouds from menpo
+  '''Detects landmarks on a color image, returns point-clouds from menpo
 
   This helper will detect faces and landmarks, possibly many, on the input
-  color-scale image.
+  color image.
 
   Parameters:
 
