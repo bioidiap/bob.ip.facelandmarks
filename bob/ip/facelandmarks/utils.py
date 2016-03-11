@@ -189,11 +189,19 @@ def _detect_multiple_landmarks_on_gray_image(data, top=0, min_quality=0.):
     list: A list of named tuples of type :py:class:`Result`, each containing
       the result of face detection and landmarks extracted from the input
       image.
+      The list MAY BE EMPTY if no face is detected in the input image (data).
 
   '''
 
   # detect the face location on the given image
-  bounding_boxes, qualities = bob.ip.facedetect.detect_all_faces(data)
+  retval = []
+  bounding_boxes = None
+  qualities = None
+  fdResult = bob.ip.facedetect.detect_all_faces(data)
+  if fdResult is not None:
+    bounding_boxes, qualities = fdResult
+  else:
+    return retval #return empty keypointset-list if no face-bounding-box was detected
 
   # filters bounding boxes according to priority and quality
   if top:
@@ -207,8 +215,7 @@ def _detect_multiple_landmarks_on_gray_image(data, top=0, min_quality=0.):
   logger.info('Found %d valid face detection(s) (after filtering)',
       len(qualities))
 
-  # runs the landmark detector
-  retval = []
+  # runs the landmark detector and for, each face-bounding-box, adds the detected landmarks to the list retval.
   for k,(bb,qual) in enumerate(zip(bounding_boxes, qualities)):
     logger.debug('Detecting landmarks on bounding box %d/%d (quality=%g)...',
         k+1, len(qualities), qual)
@@ -312,7 +319,7 @@ def detect_landmarks(data, top=0, min_quality=0.):
 
   '''
 
-  if data.shape == 2:
+  if len(data.shape) == 2:
     return _detect_multiple_landmarks_on_gray_image(data, top, min_quality)
   else:
     return _detect_multiple_landmarks_on_color_image(data, top, min_quality)
