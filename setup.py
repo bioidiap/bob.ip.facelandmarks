@@ -17,7 +17,7 @@ setup(
     version=version,
     description='Face keypoint detection using menpo',
 
-    url='http://github.com/bioidiap/bob.ip.facelandmarks',
+    url='http://gitlab.idiap.ch/bob/bob.ip.facelandmarks',
     license='BSD',
     author='Andre Anjos',
     author_email='andre.anjos@idiap.ch',
