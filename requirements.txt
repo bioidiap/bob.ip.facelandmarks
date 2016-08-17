@@ -9,3 +9,4 @@ bob.ip.color
 bob.ip.facedetect
 cyvlfeat
 menpo
+menpofit
