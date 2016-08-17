@@ -6,7 +6,6 @@ bob.io.image
 bob.ip.draw
 bob.ip.color
 bob.ip.facedetect
-cython<0.24,>=0.23
 cyvlfeat
 menpo
 menpofit
