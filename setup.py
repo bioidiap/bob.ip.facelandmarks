@@ -15,8 +15,7 @@ setup(
 
     name='bob.ip.facelandmarks',
     version=version,
-    description='Face keypoint detection using menpo',
-
+    description='Bob wrapper for Menpo\'s face keypoint detector',
     url='http://gitlab.idiap.ch/bob/bob.ip.facelandmarks',
     license='BSD',
     author='Andre Anjos',

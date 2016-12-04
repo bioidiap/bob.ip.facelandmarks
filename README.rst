@@ -1,5 +1,5 @@
 .. vim: set fileencoding=utf-8 :
-.. Tue 16 Aug 17:43:46 CEST 2016
+.. Sat  3 Dec 20:18:15 2016 CET
 
 .. image:: http://img.shields.io/badge/docs-stable-yellow.png
    :target: http://pythonhosted.org/bob.ip.facelandmarks/index.html
@@ -15,12 +15,13 @@
    :target: https://pypi.python.org/pypi/bob.ip.facelandmarks
 
 
-===========================================================
-Bob wrapper for the menpo face keypoints detection package.
-===========================================================
+================================================
+ Bob wrapper for Menpo's face keypoint detector
+================================================
 
 This package is part of the signal-processing and machine learning toolbox
-Bob_. This package is basically a wrapper for using menpo (facial keypoints detection library) via Bob.
+Bob_. This package is basically a wrapper for using menpo (facial keypoints
+detection library) via Bob.
 
 
 Installation
