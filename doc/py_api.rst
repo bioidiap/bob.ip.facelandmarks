@@ -1,14 +1,21 @@
 .. vim: set fileencoding=utf-8 :
-.. Andre Anjos <andre.anjos@idiap.ch>
-.. Tue 16 Feb 2016 15:44:07 CET
+.. Manuel Guenther <manuel.guenther@idiap.ch>
+.. Wed 14 Jan 16:15:27 CET 2015
 
 
 ============
  Python API
 ============
 
-Classes
--------
+Functions
+---------
+
+.. autosummary::
+
+   bob.ip.facelandmarks.utils.detect_landmarks
+
+
+Detailed Information
+--------------------
 
 .. automodule:: bob.ip.facelandmarks
-
