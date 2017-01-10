@@ -7,14 +7,6 @@
  Python API
 ============
 
-Functions
----------
-
-.. autosummary::
-
-   bob.ip.facelandmarks.utils.detect_landmarks
-
-
 Detailed Information
 --------------------
 
