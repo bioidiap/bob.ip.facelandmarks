@@ -13,8 +13,8 @@ import pkg_resources
 import bob.io.base
 import bob.io.base.test_utils
 
-from .utils import detect_landmarks, draw_landmarks
-from .utils import detect_landmarks_on_boundingbox
+from bob.ip.facelandmarks.utils import detect_landmarks, draw_landmarks, save_landmarks, Result
+from bob.ip.facelandmarks.utils import detect_landmarks_on_boundingbox
 from .script.detect_landmarks import main as app
 
 

@@ -10,6 +10,8 @@ import bob.io.video
 import bob.ip.color
 
 import bob.ip.facelandmarks as menpo
+from bob.ip.facelandmarks.utils import detect_landmarks, draw_landmarks, save_landmarks, Result
+from bob.ip.facelandmarks.utils import detect_landmarks_on_boundingbox
 
 from PIL import Image, ImageDraw
 from bob.ip.draw import box, cross, plus

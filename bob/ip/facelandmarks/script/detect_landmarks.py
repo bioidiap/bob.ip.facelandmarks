@@ -87,7 +87,7 @@ def main(user_input=None):
   if args['--verbose'] == 1: logging.getLogger().setLevel(logging.INFO)
   elif args['--verbose'] >= 2: logging.getLogger().setLevel(logging.DEBUG)
 
-  from .. import detect_landmarks, draw_landmarks, save_landmarks
+  from bob.ip.facelandmarks.utils import detect_landmarks, draw_landmarks, save_landmarks
 
   data = bob.io.base.load(args['<input>'])
   top = int(args['--limit-to'])
