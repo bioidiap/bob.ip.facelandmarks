@@ -1,14 +1,10 @@
 .. vim: set fileencoding=utf-8 :
-.. Andre Anjos <andre.anjos@idiap.ch>
-.. Tue 16 Feb 2016 15:44:07 CET
-
 
 ============
  Python API
 ============
 
-Classes
--------
+Detailed Information
+--------------------
 
-.. automodule:: bob.ip.facelandmarks
-
+.. automodule:: bob.ip.facelandmarks.utils
