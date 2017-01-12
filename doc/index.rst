@@ -2,16 +2,15 @@
 .. Andre Anjos <andre.anjos@idiap.ch>
 .. Tue 16 Feb 2016 15:42:29 CET
 
-====================================================
- Bob's Face Landmark Detection Routines using Menpo
-====================================================
+========================================================
+ Bob's Routines for Face Landmark Detection using Menpo
+========================================================
 
 .. todolist::
 
-This package includes a `Bob`_ interface to `menpo`_ allowing you to detect
-landmarks on faces from images and videos. The model was provided by
-Epameinondas Antonakos from the `iBug`_ laboratory at Imperial College, London,
-UK.
+This package includes a `Bob`_ interface to `menpo`_, and allows you to extract 
+facial-landmarks in images and videos. The pre-trained Menpo model was provided by
+Epameinondas Antonakos from the `iBug`_ laboratory at Imperial College, London, UK.
 
 
 Documentation
@@ -20,6 +19,7 @@ Documentation
 .. toctree::
    :maxdepth: 2
 
+   guide
    py_api
 
 
