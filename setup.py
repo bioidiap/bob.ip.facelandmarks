@@ -21,7 +21,7 @@ setup(
     author='Andre Anjos',
     author_email='andre.anjos@idiap.ch',
     keywords='bob, keypoint detection, face',
-    maintainer="Sushil Bhattacharjee"
+    maintainer="Sushil Bhattacharjee",
     maintainer_email="sbhatta@idiap.ch"
 
     long_description=open('README.rst').read(),
