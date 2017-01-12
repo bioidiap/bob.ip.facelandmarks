@@ -11,6 +11,7 @@
    import bob.ip.color
    import bob.ip.facedetect
    import bob.ip.facelandmarks
+   import bob.ip.facelandmarks.utils
 
    import pkg_resources
    #lena_file = '/idiap/user/sbhatta/work/git/bob.ip.facelandmarks/data/lena.jpg'
@@ -113,8 +114,8 @@ Note that the return-value of ``detect_landmarks_on_boundingbox()`` is a 2D nump
    
    >>> gray_image = bob.ip.color.rgb_to_gray(face_image)
    >>> my_bounding_box, _ = bob.ip.facedetect.detect_single_face(gray_image)
-   >>> key_points = bob.ip.facelandmarks.detect_landmarks_on_boundingbox(gray_image, my_bounding_box)
-   >>> print(key_points.shape)
+   >>> my_key_points = bob.ip.facelandmarks.utils.detect_landmarks_on_boundingbox(gray_image, my_bounding_box)
+   >>> print(my_key_points.shape)
    (68, 2)
 
 
