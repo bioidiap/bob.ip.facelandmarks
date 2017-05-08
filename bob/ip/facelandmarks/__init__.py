@@ -2,7 +2,7 @@
 # vim: set fileencoding=utf-8 :
 
 from .utils import *
-
+from .utils import _Result
 
 # gets sphinx autodoc done right - don't remove it
 def __appropriate__(*args):
@@ -18,6 +18,7 @@ def __appropriate__(*args):
 
 
 __appropriate__(
+    _Result,
     Result,
     detect_landmarks_on_boundingbox,
     detect_landmarks,

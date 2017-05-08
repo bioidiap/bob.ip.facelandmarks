@@ -55,7 +55,7 @@ This package also provides a handy function, ``draw_landmarks()``, for plotting 
 
 .. doctest::
 
-   >>> bob.ip.facelandmarks.utils.draw_landmarks(gray_image, key_points)
+   >>> bob.ip.facelandmarks.draw_landmarks(gray_image, key_points)
 
 The result is shown in the image below.
 
@@ -113,7 +113,7 @@ Note that the return-value of ``detect_landmarks_on_boundingbox()`` is a 2D nump
 
    >>> gray_image = bob.ip.color.rgb_to_gray(face_image)
    >>> my_bounding_box, _ = bob.ip.facedetect.detect_single_face(gray_image)
-   >>> my_key_points = bob.ip.facelandmarks.utils.detect_landmarks_on_boundingbox(gray_image, my_bounding_box)
+   >>> my_key_points = bob.ip.facelandmarks.detect_landmarks_on_boundingbox(gray_image, my_bounding_box)
    >>> print(my_key_points.shape)
    (68, 2)
 
@@ -129,7 +129,7 @@ In the following example, the input image contains several faces, out of which, 
 
    >>> multi_image = bob.io.base.load('multiple-faces.jpg') # doctest: +SKIP
    >>> gray_image = bob.ip.color.rgb_to_gray(multi_image)
-   >>> key_points = bob.ip.facelandmarks.utils.detect_landmarks(gray_image, top=5)
+   >>> key_points = bob.ip.facelandmarks.detect_landmarks(gray_image, top=5)
    >>> for i in range(5):
    ...   print(key_points[i].bounding_box.topleft)
    (136, 2243)

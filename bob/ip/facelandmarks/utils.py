@@ -132,11 +132,10 @@ class Result(_Result):
   '''A :py:class:`collections.namedtuple` with landmark information
 
   Attributes:
-
     bounding_box (:py:class:`bob.ip.facedetect.BoundingBox`): A bounding box
       extracted with :py:mod:`bob.ip.facedetect`.
 
-    quality (float): A floating-point number expressing the quality of the
+    quality (:py:class:`float`): the quality of the
       extracted bounding-box, as returned by :py:mod:`bob.ip.facedetect`'s
       Boosted classifier
 
@@ -173,11 +172,11 @@ def _detect_multiple_landmarks_on_gray_image(data, top=0, min_quality=0.):
     data (:py:class:`numpy.ndarray`): An ``uint8`` array with 2 dimensions,
       corresponding to a gray-scale image loaded with Bob (y, x) ordering.
 
-    top (int): An integer which indicates if we should only consider the first
+    top (:py:class:`int`): An integer which indicates if we should only consider the first
       N detections or all of them. A value of zero means the selector ignores
       this field.
 
-    min_quality (float): A float that also trims the face detector output list
+    min_quality (:py:class:`float`): also trims the face detector output list
       by considering a minimum quality for the detection. A value of zero (0.0)
       means "any quality will do". Good detections have a typical value which
       is greater than 30. Use this parameter with care. If this and ``top`` are
@@ -265,11 +264,11 @@ def _detect_multiple_landmarks_on_color_image(data, top=0, min_quality=0.):
     data (:py:class:`numpy.ndarray`): An ``uint8`` array with 3 dimensions,
       corresponding to a color image loaded with Bob (planes, y, x) ordering.
 
-    top (int): An integer which indicates if we should only consider the first
+    top (:py:class:`int`): An integer which indicates if we should only consider the first
       N detections or all of them. A value of zero means the selector ignores
       this field.
 
-    min_quality (float): A float that also trims the face detector output list
+    min_quality (:py:class:`float`): also trims the face detector output list
       by considering a minimum quality for the detection. A value of zero (0.0)
       means "any quality will do". Good detections have a typical value which
       is greater than 30. Use this parameter with care. If this and ``top`` are
@@ -300,11 +299,11 @@ def detect_landmarks(data, top=0, min_quality=0.):
       dimensions, corresponding to a either a gray-scale or color image loaded
       with Bob.
 
-    top (int): An integer which indicates if we should only consider the first
+    top (:py:class:`int`): An integer which indicates if we should only consider the first
       N detections or all of them. A value of zero means the selector ignores
       this field.
 
-    min_quality (float): A float that also trims the face detector output list
+    min_quality (:py:class:`float`): trims the face detector output list
       by considering a minimum quality for the detection. A value of zero (0.0)
       means "any quality will do". Good detections have a typical value which
       is greater than 30. Use this parameter with care. If this and ``top`` are
@@ -399,7 +398,7 @@ def save_landmarks(results, fname):
       :py:class:`.utils.Result`, each containing the result of face detection
       and landmarks extracted from the input image.
 
-    fname (str): A path with the output filename
+    fname (:py:class:`str`): A path with the output filename
 
   '''
 
