@@ -186,10 +186,10 @@ def _detect_multiple_landmarks_on_gray_image(data, top=0, min_quality=0.):
 
   Returns:
 
-    list: A list of named tuples of type :py:class:`.utils.Result`, each containing
-      the result of face detection and landmarks extracted from the input
-      image.
-      The list MAY BE EMPTY if no face is detected in the input image (data).
+    :py:class:`list`: A list of named tuples of type :py:class:`.utils.Result`,
+      each containing the result of face detection and landmarks extracted from
+      the input image.  The list MAY BE EMPTY if no face is detected in the
+      input image (data).
 
   '''
 
@@ -278,9 +278,9 @@ def _detect_multiple_landmarks_on_color_image(data, top=0, min_quality=0.):
 
   Returns:
 
-    list: A list of named tuples of type :py:class:`.utils.Result`, each containing
-      the result of face detection and landmarks extracted from the input
-      image.
+    :py:class:`list`: A list of named tuples of type :py:class:`.utils.Result`,
+      each containing the result of face detection and landmarks extracted from
+      the input image.
 
   '''
 
@@ -313,9 +313,9 @@ def detect_landmarks(data, top=0, min_quality=0.):
 
   Returns:
 
-    list: A list of named tuples of type :py:class:`.utils.Result`, each containing
-      the result of face detection and landmarks extracted from the input
-      image.
+    :py:class:`list`: A list of named tuples of type :py:class:`.utils.Result`,
+      each containing the result of face detection and landmarks extracted from
+      the input image.
 
   '''
 
@@ -335,9 +335,9 @@ def draw_landmarks(data, results):
       dimensions, corresponding to a either a gray-scale or color image loaded
       with Bob.
 
-    results (list): A list of named tuples of type :py:class:`.utils.Result`, each
-      containing the result of face detection and landmarks extracted from the
-      input image.
+    results (:py:class:`list`): A list of named tuples of type
+      :py:class:`.utils.Result`, each containing the result of face detection
+      and landmarks extracted from the input image.
 
   '''
 
@@ -395,9 +395,9 @@ def save_landmarks(results, fname):
 
   Parameters:
 
-    results (list): A list of named tuples of type :py:class:`.utils.Result`, each
-      containing the result of face detection and landmarks extracted from the
-      input image.
+    results (:py:class:`list`): A list of named tuples of type
+      :py:class:`.utils.Result`, each containing the result of face detection
+      and landmarks extracted from the input image.
 
     fname (str): A path with the output filename
 

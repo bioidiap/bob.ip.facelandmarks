@@ -1,1 +1,3 @@
+# Solve some Python 2.7 misses on its documentation
+py:class list
 py:class collections.namedtuple
