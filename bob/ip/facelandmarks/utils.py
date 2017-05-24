@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 # encoding: utf-8
-# Andre Anjos <andre.dos.anjos@gmail.com>
-# Wed 17 Feb 2016 10:53:06 CET
 
 '''A set of helper utitilities to deal with menpo images and point clouds'''
 
@@ -132,11 +130,10 @@ class Result(_Result):
   '''A :py:class:`collections.namedtuple` with landmark information
 
   Attributes:
-
     bounding_box (:py:class:`bob.ip.facedetect.BoundingBox`): A bounding box
       extracted with :py:mod:`bob.ip.facedetect`.
 
-    quality (float): A floating-point number expressing the quality of the
+    quality (:py:class:`float`): the quality of the
       extracted bounding-box, as returned by :py:mod:`bob.ip.facedetect`'s
       Boosted classifier
 
@@ -166,18 +163,22 @@ def _detect_multiple_landmarks_on_gray_image(data, top=0, min_quality=0.):
   '''Detects landmarks on a gray-scale image, returns point-clouds from menpo
 
   This helper will detect faces and landmarks, possibly many, on the input
-  gray-scale image.
+  gray-scale image. It first detects faces in the input image, using
+  :py:mod:`bob.ip.facedetect`, and then uses the result of the
+  face-detection-step for detecting facial-landmarks.
+
 
   Parameters:
 
     data (:py:class:`numpy.ndarray`): An ``uint8`` array with 2 dimensions,
       corresponding to a gray-scale image loaded with Bob (y, x) ordering.
 
-    top (int): An integer which indicates if we should only consider the first
-      N detections or all of them. A value of zero means the selector ignores
-      this field.
+    top (:py:class:`int`): An integer which indicates if we should only
+      consider the first N detections or all of them. A value of zero means the
+      selector ignores this field. A value of 1 returns only the best detection
+      (with the highest quality).
 
-    min_quality (float): A float that also trims the face detector output list
+    min_quality (:py:class:`float`): Also trims the face detector output list
       by considering a minimum quality for the detection. A value of zero (0.0)
       means "any quality will do". Good detections have a typical value which
       is greater than 30. Use this parameter with care. If this and ``top`` are
@@ -186,7 +187,7 @@ def _detect_multiple_landmarks_on_gray_image(data, top=0, min_quality=0.):
 
   Returns:
 
-    :py:class:`list`: A list of named tuples of type :py:class:`.utils.Result`,
+    :py:class:`list`: A list of named tuples of type :py:class:`Result`,
       each containing the result of face detection and landmarks extracted from
       the input image.  The list MAY BE EMPTY if no face is detected in the
       input image (data).
@@ -265,11 +266,11 @@ def _detect_multiple_landmarks_on_color_image(data, top=0, min_quality=0.):
     data (:py:class:`numpy.ndarray`): An ``uint8`` array with 3 dimensions,
       corresponding to a color image loaded with Bob (planes, y, x) ordering.
 
-    top (int): An integer which indicates if we should only consider the first
+    top (:py:class:`int`): An integer which indicates if we should only consider the first
       N detections or all of them. A value of zero means the selector ignores
       this field.
 
-    min_quality (float): A float that also trims the face detector output list
+    min_quality (:py:class:`float`): also trims the face detector output list
       by considering a minimum quality for the detection. A value of zero (0.0)
       means "any quality will do". Good detections have a typical value which
       is greater than 30. Use this parameter with care. If this and ``top`` are
@@ -278,9 +279,9 @@ def _detect_multiple_landmarks_on_color_image(data, top=0, min_quality=0.):
 
   Returns:
 
-    :py:class:`list`: A list of named tuples of type :py:class:`.utils.Result`,
-      each containing the result of face detection and landmarks extracted from
-      the input image.
+    :py:class:`list`: A list of named tuples of type :py:class:`Result`, each
+      containing the result of face detection and landmarks extracted from the
+      input image.
 
   '''
 
@@ -294,17 +295,18 @@ def detect_landmarks(data, top=0, min_quality=0.):
   This helper will detect faces and landmarks, possibly many, on the input
   image.
 
+
   Parameters:
 
     data (:py:class:`numpy.ndarray`): An ``uint8`` array with either 2 or 3
       dimensions, corresponding to a either a gray-scale or color image loaded
       with Bob.
 
-    top (int): An integer which indicates if we should only consider the first
-      N detections or all of them. A value of zero means the selector ignores
-      this field.
+    top (:py:class:`int`): An integer which indicates if we should only
+      consider the first N detections or all of them. A value of zero means the
+      selector ignores this field.
 
-    min_quality (float): A float that also trims the face detector output list
+    min_quality (:py:class:`float`): trims the face detector output list
       by considering a minimum quality for the detection. A value of zero (0.0)
       means "any quality will do". Good detections have a typical value which
       is greater than 30. Use this parameter with care. If this and ``top`` are
@@ -313,9 +315,9 @@ def detect_landmarks(data, top=0, min_quality=0.):
 
   Returns:
 
-    :py:class:`list`: A list of named tuples of type :py:class:`.utils.Result`,
-      each containing the result of face detection and landmarks extracted from
-      the input image.
+    :py:class:`list`: A list of named tuples of type :py:class:`Result`, each
+      containing the result of face detection and landmarks extracted from the
+      input image.
 
   '''
 
@@ -336,8 +338,8 @@ def draw_landmarks(data, results):
       with Bob.
 
     results (:py:class:`list`): A list of named tuples of type
-      :py:class:`.utils.Result`, each containing the result of face detection
-      and landmarks extracted from the input image.
+      :py:class:`Result`, each containing the result of face detection and
+      landmarks extracted from the input image.
 
   '''
 
@@ -396,10 +398,10 @@ def save_landmarks(results, fname):
   Parameters:
 
     results (:py:class:`list`): A list of named tuples of type
-      :py:class:`.utils.Result`, each containing the result of face detection
-      and landmarks extracted from the input image.
+      :py:class:`Result`, each containing the result of face detection and
+      landmarks extracted from the input image.
 
-    fname (str): A path with the output filename
+    fname (:py:class:`str`): A path with the output filename
 
   '''
 

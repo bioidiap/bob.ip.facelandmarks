@@ -7,4 +7,4 @@
 Detailed Information
 --------------------
 
-.. automodule:: bob.ip.facelandmarks.utils
+.. automodule:: bob.ip.facelandmarks
