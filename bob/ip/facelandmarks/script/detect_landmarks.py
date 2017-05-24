@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 # encoding: utf-8
-# Andre Anjos <andre.anjos@idiap.ch>
-# Tue 16 Feb 2016 15:52:30 CET
 
 '''Face landmark detector using menpo (%(version)s)
 

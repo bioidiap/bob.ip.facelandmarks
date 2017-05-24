@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 # encoding: utf-8
-# Andre Anjos <andre.anjos@idiap.ch>
-# Wed 17 Feb 14:32:58 CET 2016
 
 '''Test units for bob.ip.facelandmarks'''
 

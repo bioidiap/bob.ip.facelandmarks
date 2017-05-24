@@ -1,3 +1,4 @@
-# Solve some Python 2.7 misses on its documentation
+# This is not documented as py:exc in Python 2.7 - works in Python 3.x
+py:obj list
 py:class list
 py:class collections.namedtuple
