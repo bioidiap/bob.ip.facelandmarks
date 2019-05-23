@@ -2,6 +2,8 @@
 .. Andre Anjos <andre.anjos@idiap.ch>
 .. Tue 16 Feb 2016 15:42:29 CET
 
+.. _bob.ip.facelandmarks:
+
 ========================================================
  Bob's Routines for Face Landmark Detection using Menpo
 ========================================================
